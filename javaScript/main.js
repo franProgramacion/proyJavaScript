@@ -4,6 +4,8 @@
 // Nota 2 faltan añadir demas productos del catalogo que no son perfumeria
 
 // inicio catalogo
+// PENDIENTE. Debo declararlos con una clase ocnstructora 
+/*
 let productoPerfumeria = [
     { marca:"todoDia", producto:"perfume", precio: 2200, tipo:"", caracteristicas: "Frambuesa y pimienta rosa", descuento: false, stock: 5 },
     { marca:"todoDia", producto:"perfume", precio: 2200, tipo:"", caracteristicas: "Cereza y avellana", descuento: false, stock: 2 },
@@ -92,215 +94,212 @@ for (const gastosMes of gastos)
     gastosMes.descuento();
 
 console.log (gastos);
+*/
+
+// Productos destacados. Aqui aplico DOM para insertar ciertos productos en el HTML
+
+// Antes de mostrar los productos destacados insertar mensaje indicando ofertas por el dia del padre
+// Ejercicio desafio
+
+// CARRITO DE COMPRA
+//Primer paso (lineas 107 a 132) creo una clase constructora y coloco los productos del catalogo en un arreglo denominado prodDest
+
+class Produc {
+    constructor(nombre, precio, tipo, codigo, descripcion, imagen,) {
+        this.nombre  = nombre;
+        this.precio  = parseFloat(precio);
+        this.tipo = tipo;
+        this.codigo = codigo;
+        this.descripcion = descripcion;
+        this.imagen  = imagen;
+       
+}
+}
+
+const perfHom = new Produc("Humor", 2916, "Paz e Humor", 64750,"Aromático moderado. Una fragancia innovadora, con la fuerza de las notas hervales", 
+    "https://staticar.natura.com/cdn/ff/hChbWa82G-S2F2NaAvExrMIEq1hpgMYkZJsOgn7X5JE/1641343847/public/2022-01/64750_beneficiosfragancia_2.jpg");
+
+const perfHom2 = new Produc("Kaiak", 4900, "Urbe", 34075,"Para quienes aprecian el aire libre y la naturaleza, de espíritu joven y osado.", "https://staticar.natura.com/cdn/ff/pso1TPTxNbrJpd0L3yTcZdDJgZ63vFnQce9uKmELnJs/1652746082/public/styles/medium/public/products/34075_1_18.jpg?itok=Q813EMWW");
+
+const perfHom3 = new Produc("Urbano", 4020, "Recria", 91337 ,"Perfecto para quienes hombres de espíritu inquieto y una forma joven de encarar la vida", "https://staticar.natura.com/cdn/ff/V4cYBP9iY8IylMMTqz9de5dr5oetto4CpPGZkDZHwrw/1652733473/public/styles/medium/public/products/91337_1_19.jpg?itok=TiRR0_3o");
+
+const desodor = new Produc("Kaiak", 975, "Corporal Urbe", 56740 ,"Desodorante masculino 100% vegetal y más fragancia.", "https://staticar.natura.com/cdn/ff/dPLk_rt_JcQLYjmzEZ1V_m1-ZfcVqG1P7kqd5tdaNHc/1652741422/public/styles/medium/public/products/56740_1_12.jpg?itok=O8AjDv2Z");
+
+const espuma = new Produc("Natura Homem", 1315, "", 78911 ,"La Espuma de Afeitar Natura Homem proporciona una afeitada más práctica y confortable, calma la piel y la deja suave. Posee una textura más densa para mayor comodidad al afeitarse.", "https://staticar.natura.com/cdn/ff/TEM7Slc6RLJXV4mWwtP3YlI4sMJeowmFoB9GZMfxqPg/1641469071/public/2022-01/78911_beneficios_1.jpg");
+
+const prodDest = [];
+prodDest.push(perfHom, perfHom2, perfHom3, desodor, espuma);
+console.log (prodDest);
+
+// Fin primer paso
+
+// Segundo paso (lines 137 a 152): La idea es crear constantes donde, en una estructura html ya creada, guardar tanto el catalogo de productos como el carrito de compras. Detallo con comentarios lo que guarda cada constante
+let carrito = [];
+const signo = '$';
+
+// Constante itemsHtml: Selecciono mediante query la seccion items creada en el html. Aqui se ubican todo el catalogo de productos que estan en el arreglo prodDest
+const itemsHtml = document.querySelector('#items');
+
+// Constante carritoHTML: Dentro de la seccion carrito del html, se coloca la estructura creada desde js, donde se van guardando los productos seleccionados por el cliente.
+const carritoHTML = document.querySelector('#carrito');
+
+// Dentro de la constante precioTotal coloco el resultado de la funcion que suma el precio de los productos añadidos por el carrito
+const precioTotal = document.querySelector('#total');
+
+// Dentro de esta constante se guarda la funcion de vaciar carrito
+const botonVaciarHTML = document.querySelector('#boton-vaciar');
+
+// Guardo local storage en una constante, para poder reutilizarla
+const miLocalStorage = window.localStorage;
 
 
-// Fin objetos
+// Tercer paso (lineas 158 a 194): Crear desde js la estructura html donde insertamos los productos a vender. A diferencia del paso anterior, aqui creamos la estructura HTML desde js
 
-// Inicio funcionalides a entregar en proyecto final
+function catalogoProductos() {
+    prodDest.forEach((info) => {
+        // Creo la estructura general del card
+        const card = document.createElement('div');
+        card.classList.add('card', 'col-sm-4');
+        // Creo el cuerpo del card
+        const cardBody = document.createElement('div');
+        cardBody.classList.add('card-body');
+        // Creo el titulo que correpsonde a cada producto de las tarjetas.
+        const cardTitle = document.createElement('h5');
+        cardTitle.classList.add('card-title');
+        cardTitle.textContent = info.nombre;
+        // Creacion de la imagen
+        const cardImg = document.createElement('img');
+        cardImg.classList.add('img-fluid');
+        cardImg.setAttribute('src', info.imagen);
+        // Creacion del precio
+        const cardPrecio = document.createElement('p');
+        cardPrecio.classList.add('card-text');
+        cardPrecio.textContent = `${signo}${info.precio}`;
+        // Creacion del boton
+        const cardBoton = document.createElement('button');
+        cardBoton.classList.add('btn', 'btn-primary');
+        cardBoton.textContent = '+';
+        cardBoton.setAttribute('marcador', info.codigo);
+        cardBoton.addEventListener('click', añadirCarrito);
+        // Insertamos dentro de la estructura general creada (card y cardBody, el titulo, imagen, precio y boton de cada producto)
+        cardBody.appendChild(cardImg);
+        cardBody.appendChild(cardTitle);
+        cardBody.appendChild(cardPrecio);
+        cardBody.appendChild(cardBoton);
+        card.appendChild(cardBody);
+        itemsHtml.appendChild(card);
+    });
+}
 
-// Inicio primera parte de la simulacion: pedir que ingrese el tipo de producto que le interesa al cliente
+catalogoProductos();
 
- // Funcion eleccion: funcion para seleccionar una opcion entre varias de tipos de productos
- /*
- function eleccion () {
-    let num = parseInt (prompt ("Ingrese 1 para seleccionar productos de perfumeria, 2 para desodorantes, 3 para cremas para el cuerpo o 4 para jabones"))
+//Cuarta parte: FUNCIONES
+//Funcion 1: funcion para añadir productos al carrito
+function añadirCarrito(evento) {
+    // Añadimos el producto seleccionado a nuestro carrito
+    carrito.push(evento.target.getAttribute('marcador'))
+    // Actualizamos el carrito con los productos añadidos 
+    carritoDeCompras();
+    // Guardar los productos del carrito en el localStorage
+    guardarCarritoEnLocalStorage();
 
-    switch (num){
-        case 1:
-            alert ("Ha seleccionado la opcion de perfumeria.");
-            let marca = prompt ("Ahora seleccione alguna de nuestras marcas: Kaiak, tododia, aquas, Ekos, Humor, Luna o Biografia:"); 
-            switch (marca) {
-                case "Kaiak":
-                    alert ("Ha seleccionado nuestro producto Kaiak Aero.");
-                    carro ();
-                    nomProd ("Kaiak");
-                    precioCompra (3500);
-                return "Kaiak";
-                case "tododia":
-                    alert ("Ha seleccionado nuestro producto tododia");
-                    carro ();
-                    nomProd ("tododia");
-                    precioCompra (3500);
-                return "tododia";
-                case "aquas":
-                    alert ("Ha seleccionado nuestro producto aquas");
-                    carro ();
-                    nomProd ("aquas");
-                    precioCompra (3500);
-                return "aquas";
-                case "Ekos":
-                    alert ("Ha seleccionado nuestro producto Ekos");
-                    carro ();
-                    nomProd ("Ekos");
-                    precioCompra (3500);
-                return "Ekos"
-                case "Humor":
-                    prompt ("Ha seleccionado nuestro producto Humor");
-                    carro ();
-                    nomProd ("Humor");
-                    precioCompra (3500);   
-                return "Humor"
-                case "Luna":
-                    prompt ("Ha seleccionado nuestro producto Luna");
-                    carro ();
-                    nomProd ("Luna");
-                    precioCompra (3500);
-                return "Luna"
-                case "Biografia":
-                    prompt ("Ha seleccionado nuestro producto Biografia");
-                    carro ();
-                    nomProd ("Biografia");
-                    precioCompra (3500);   
-                return "Biografia"
-            break
-                        }
-        case 2:
-            alert ("Ha seleccionado la opcion desodorantes");
-            let marcaDes = prompt ("Ahora seleccione alguna de nuestras marcas: Erva Doce, tododia, Biografia:");
-            switch (marcaDes) {
-                case "Erva Doce":
-                    prompt ("Ha seleccionado nuestro producto Erva Doce.");
-                    carro ();
-                    nomProd ("Natura Erva Doce");
-                    precioCompra (500);
-                    return "Erva Doce";
-                case "tododia":
-                    prompt ("Ha seleccionado nuestro producto tododia");
-                    carro ();
-                    nomProd ("tododia");
-                    precioCompra (400);
-                    return "tododia";
-                case "Biografia":
-                    prompt ("Ha seleccionado nuestro producto Biografia");
-                    carro ();
-                    nomProd ("Natura Biografia");
-                    precioCompra (3500);  
-                return "Biografia";
-            }
-        case 3:
-            alert ("Ha seleccionado la opcion cremas para el cuerpo.")
-            let marcasCre = prompt("Presione 1 si desea adquirir tododia hojas de limon, 2 para Frambuesa y pimienta rosa, 3 para cereza y avellana o 4 para Flor de lis")
-            switch (marcasCre) {
-                case "1":
-                    alert("Ha seleccionado nuestro producto tododia Hojas de limon");
-                    carro ();
-                    nomProd ("Hojas de Limon");
-                    precioCompra (500);
-                return "Hojas de limon";
-                case "2":
-                    alert ("Ha seleccionado nuestro producto tododia Frambuesa y pimienta rosa");
-                    carro ();
-                    nomProd ("tododia Frambuesa y pimienta rosa");
-                    precioCompra (400);
-                return "Frambuesa";
-                case "3":
-                    alert ("Ha seleccionado nuestro producto tododia cereza y avellana");
-                    carro ();
-                    nomProd ("Cereza y avellana");
-                    precioCompra (500);  
-                return "Cereza";
-                case "4":
-                    alert ("Ha seleccionado nuestro producto tododia flor de lis");
-                    carro ();
-                    nomProd ("flor de lis");
-                    precioCompra (500);
-                return "flor de lis";
-                default:
-                 prompt("El numero ingresado no es valido");
-            break
-            break
-            }
-        case 4:
-            alert ("Ha seleccionado la opcion jabones")
-            let marcasJab = prompt("Ahora escoja alguna de nuestras marcas: Ekos o Tododia")
-            switch (marcasJab) {
-                case "Ekos":
-                    alert("Ha seleccionado nuestro producto Ekos");
-                    carro ();
-                    nomProd ("jabon Ekos");
-                    precioCompra (800);
-                return "Ekos"
-                case "Tododia":
-                    alert ("Ha seleccionado nuestro producto tododia");
-                    carro ();
-                    nomProd ("jabon Tododia");
-                    precioCompra (700);
-                return "Tododia" }
-        default:
-            prompt("El numero ingresado no es valido");
-            break
-    }
-        } 
-    */
-// Fin funcion eleccion
+}
+// Funcion 2: Funcion que crea el carrito de compras
+function carritoDeCompras() {
+    // Con esto limpio el contenedor y evito duplicados
+    carritoHTML.textContent = '';
+    const carritoSinDuplicados = [...new Set(carrito)];
 
-// Inicio segunda parte de la simulacion
- // Segunda parte de la simulacion: Una funcion para añadir un producto al carrito
+    // A continuacion recorro el carrito y busco el producto seleccionado
+    carritoSinDuplicados.forEach((item) => {
+        const miItem = prodDest.filter((itemProdDest) => {
+            return itemProdDest.codigo === parseInt(item);
+        });
 
- /*
-compra = 0;
-cantProd = 0;
+        //Para que se pueda seleccionar varias unidades de un mismo producto
+        const numeroUnidadesItem = carrito.reduce((total, itemId) => {
+            // Si el producto tiene el mismo codigo Incremento el contador en caso contrario no
+            return itemId === item ? total += 1 : total;
+        }, 0);
 
+        //Aqui construyo la estructura html del carrito
+        const card = document.createElement('li');
+        card.classList.add('list-group-item', 'text-right', 'mx-2');
+        card.textContent = `${numeroUnidadesItem} x ${miItem[0].nombre} - ${miItem[0].precio}${signo}`;
 
-// Llamado de la funcion eleccion
-eleccion ();
-
- // Funcion nomProd: funcion para añadir producto a carrito 
- 
- // Funcion nomProd: funcion para añadir una lista de los productos que se incorporan al carro
- function nomProd(nombre){
-    let carroCompra = "";
-    carroCompra  = carroCompra + nombre;     
-    } 
-
-// Funcion carro: Funcion para preguntar si quiere unir producto a carrito
-
-function carro (){
-    
-    let carrito = prompt ("¿Desea añadir el producto al carrito?");
-    
-    if (carrito == "si" || carrito == "SI" || carrito == "sI" || carrito == "Si") {
-        totalCompra () }
-
-    else if (carrito == "NO" || carrito == "no" || carrito == "No" ||carrito == "nO") {
+        // Creo el boton que se usa para borrar el producto que ya esta agregado en el carrito y le doy su diseño
+        const miBoton = document.createElement('button');
+        miBoton.classList.add('btn', 'btn-danger', 'mx-5');
+        miBoton.textContent = 'X';
+        miBoton.style.marginLeft = '1rem';
+        miBoton.dataset.item = item;
+        miBoton.addEventListener('click', borrarItemCarrito);
         
-        let masProd = prompt ("¿Deseas ver otros productos?")
-         
-        if (masProd == "Si" || masProd == "si" || masProd == "sI" || masProd == "SI"){
-            eleccion();
-        }
-    
-         else 
-            prompt ("Muchas gracias por su visita, esperamos volver a verlo pronto!");
+        
+        card.appendChild(miBoton);
+        carritoHTML.appendChild(card); 
+    }); 
+
+   // Calcula el precio total
+   precioTotal.textContent = calcularTotal();
+}
+
+
+// Funcion 3: Funcion para quitar un elemento que ya ha sido añadido al carrito
+
+function borrarItemCarrito(evento) {
+    // Obtenemos el producto ID que hay en el boton pulsado
+    const id = evento.target.dataset.item;
+    // Borramos todos los productos
+    carrito = carrito.filter((carritoId) => {
+        return carritoId !== id;
+    });
+    carritoDeCompras();
+    guardarCarritoEnLocalStorage();
+}
+
+// Funcion 4: Funcion para calcular el precio total de todos los productos añadidos en el carrito, incluyendo aquellos repetidos
+function calcularTotal() {
+    // Recorremos el array del carrito 
+    return carrito.reduce((total, item) => {
+        // De cada elemento obtenemos su precio
+        const miItem = prodDest.filter((itemProdDest) => {
+            return itemProdDest.codigo === parseInt(item);
+        });
+        // multiplicamos producrto (por si hay varias cantidades del mismo producto) por precio
+        return total + miItem[0].precio;
+    }, 0).toFixed(2);
+}
+
+
+//Funcion 5: Vacia en su totalidad el carrito de compras. Tambien lo vacio en el localStorage
+
+function vaciarCarrito() {
+    carrito = [];
+    carritoDeCompras();
+    // Limpiamos el carrito en el localStorage
+    localStorage.clear();
+}
+// Funcion 6: Funcion para guardar el carrito en el localStorage aplicando JSON
+function guardarCarritoEnLocalStorage () {
+    miLocalStorage.setItem('carrito', JSON.stringify(carrito));
+}
+
+// Funcion 7:  Recupera la informacion del carrito usando localStorage (para casos como recarga de la pagina)
+function cargarCarritoDeLocalStorage () {
+    // Con el if buscamos si existe un carrito guardado en el localstorage
+    if (miLocalStorage.getItem('carrito') !== null) {
+        // En caso de existir, se lo recarga en la pagina, de manera que no se pierda la informacion ante por ejemplo una caida de conexion
+        // Aplico de vuelta JSON, pero en este caso, uso JSON parse
+        carrito = JSON.parse(miLocalStorage.getItem('carrito'));
     }
-    } 
-// Fin funcion carro
-// Fin segunda parte de la simulacion
+}
 
-// Inicio tercera parte de la simulacion
+// Quinta parte: Llamar a los Eventos
+botonVaciarHTML.addEventListener('click', vaciarCarrito);
+cargarCarritoDeLocalStorage();
+carritoDeCompras();
 
-// Funcion precioCompra: para ir sumando el precio de los productos que se van a comprar
-    function precioCompra (precioPro){
-        let compra = 0;
-        return compra + precioCompra;
-}  
-// Fin tercera parte de la simulacion
-
-// Inicio cuarta parte de la simulacion
-
-// Funcion totalCompra: Una funcion que nos brinda dos opciones cuando un producto ha sido seleccionado por el carrito: Preguntar si desea seguir agregando productos al carrito o, en caso contrario efectuar la compra del o los productos que ya tenga el carrito
-      
-    function totalCompra (){
-        let totalProd = prompt ("¿Desea seguir comprando?");
-        if (totalProd == "si" || totalProd == "SI" || totalProd == "sI" || totalProd == "Si"){
-            eleccion();
-        }
-        else 
-            prompt ("El total de su compra es de: ", compra );
-    
-        }   
-    */    
-// Fin cuarta parte de la simulacion
 
  
  
