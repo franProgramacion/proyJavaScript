@@ -30,23 +30,6 @@
 			</ul>
 		</nav> <!-- Inicio sesion, Registro, buscador y carrito -->
 		<!-- Modal inicio -->
-		<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  				<div class="modal-dialog">
-    				<div class="modal-content">
-      					<div class="modal-header">
-        					<h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-        					<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-     		 			</div>
-      					<div class="modal-body">
-        					...
-      					</div>
-      					<div class="modal-footer">
-        					<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        					<button type="button" class="btn btn-primary">Save changes</button>
-      					</div>
-					</div>
-  				</div>
-			</div>
 		<nav id="botoneraResponsive">
 			<a onclick="menuResponsive()"><span class="icon-menu3"></span></a>
 		</nav>
@@ -58,7 +41,7 @@
 	</header>
 	<section id="Inicio"> <!-- Objetivo de la seccion: mostrar imagenes que se van alternando cada cierto tiempo y frases breves en cada traspaso -->
 	<!-- Inicio carrusel bootstrap -->
-	<!--
+	
 		<div id="galeria" class="carousel slide" data-bs-ride="carousel">
   			<div class="carousel-indicators">
     			<button type="button" data-bs-target="#galeria" data-bs-slide-to="0"data-bs-interval="5000" class="active" aria-current="true" aria-label="Slide 1"></button>
@@ -88,7 +71,7 @@
 		<!-- F carrinusel bootstrap -->
 	</section>
 	<section id="Nuestrosproductos"> <!-- Objetivo de la seccion: Mostrar los diferentes productos que maneja la tienda. Cuando se haga click en la imagen correspondiente, tiene que llevar a un catalogo. Las imagenes son de muestra, es necesario buscar otras mejores antes del final del curso -->
-		<!--
+		
 		<h2>Nuestros productos</h2>
 		<div id="img_1">
 			<img src="./imagenes/perfumeNatura.jpg" class="ajustarImagen">
@@ -117,10 +100,10 @@
 			<img src="./imagenes/jabonesNatura.jpg" class="ajustarImagen">
 		</div>
 	</section>
--->
+
 	<section id="Marcas"> <!-- Objetivo de la seccion: Mostrar las diferentes marcas con las que se trabaja la tienda. Van a haber mas de tres que se mostraran con flechas laterales -->
 		<h2>Marcas</h2>
-		<!--
+		
 		<div id="descripcion">
 			<p>Trabajamos con una amplia cantidad de gamas reconocidas internacionalmente por su altisima calidad  y sus recomendaciones para tus cuidados personales. Nuestra variedad esta pensada en vos. Conoce un poco de cada una de ellas!</p> </div>
 		<div id="caja1">
@@ -150,9 +133,9 @@
 			<p>Humor es una manera de ver la vida. El humor oxigena, libera, irradia. El humor dialoga, provoca, descomprime. Y es en una relación donde el humor gana ida, contagia y se extiende. Porque la gracia es mayor cuando compartimos y nos permitimos reírnos de nosotros mismos. Una invitación a llevar la vida más leve, divertida y con humor!</p>
 		</div>
 	</section>
--->
+
 	<section id="Ofertas"> <!-- Objetivo: Mostrar las diferentes ofertas correspondientes. Esta seccion es mas dinamica. Requiere una constante actualizacion conforme al aumento o disminucion de las ofertas disponibles -->
-		<!--
+		
 		<h2>Ofertas</h2>
 		<div id="textOfertas">
 			<h3 class="titulo">Descuentos y combos</h3>
@@ -187,7 +170,7 @@
 				</ul></div>
 		</div>
 	</section>
--->
+
 	<section id="gal"> 
 		<div class="container">
 			<div class="row">
@@ -292,10 +275,6 @@
 		</div>
 	</section>
 	<footer>
-		<div id="masInformacion">
-			<p class="info"> Para conocer otros productos de Natura que no se encuentren listados en nuestra tienda, visite el sitio web <a href="https://www.naturacosmeticos.com.ar/">Natura</p>
-			</div>
-		</div>
 		<div id="redes_sociales">
 			<div id="iconosRedes">
 			<span class="icon-facebook"></span>
@@ -306,7 +285,41 @@
 		</div>
 	</footer>
 	<!-- JS bootstrap -->
-	
+	<!-- JS bootstrap -->
+	<div class="modal fade" id="exampleModal" tabindex="-1" aria-hidden="true" aria-labelledby="exampleModalLabel" >
+		<div class="modal-dialog">
+		  <div class="modal-content">
+				<div class="modal-header">
+				  <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+				  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+				</div>
+				<div class="modal-body">
+					<form id="formulario">
+						<div class="mb-3">
+						  <label for="correo" class="form-label">Email address</label>
+						  <input type="email" class="form-control" id="correo" aria-describedby="emailHelp">
+						  <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
+						</div>
+						<div class="mb-3">
+						  <label for="contraseña" class="form-label">Password</label>
+						  <input type="password" class="form-control" id="contraseña">
+						</div>
+						<div class="mb-3 form-check">
+						  <input type="checkbox" class="form-check-input" id="exampleCheck1">
+						  <label class="form-check-label" for="exampleCheck1">Check me out</label>
+						</div>
+						<button type="submit" class="btn btn-primary" id="submit">Submit</button>
+					  </form>
+				</div>
+				<div class="modal-footer">
+				  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+				  <button type="button" class="btn btn-primary">Save changes</button>
+				</div>
+		  </div>
+		</div>
+  </div>
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+	<script type="text/javascript" src="./javaScript/botonera.js"></script>
 	<script src="./javaScript/main.js"></script>
 </body>
 </html>

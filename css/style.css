@@ -44,6 +44,7 @@ h1{
     margin-inline-end: 0px;
     font-weight: bold;
 }
+
 #botonera{
 	width: 220px;
 	height: 80px;
@@ -71,7 +72,7 @@ h1{
 }
 #botonera ul li a:hover{
 	background-color: #cc6699;
-}
+} 
 #botonera2{
 	width: 960px;
 	height:40px;

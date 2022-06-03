@@ -5,7 +5,7 @@
 
 // inicio catalogo
 // PENDIENTE. Debo declararlos con una clase ocnstructora 
-/*
+
 let productoPerfumeria = [
     { marca:"todoDia", producto:"perfume", precio: 2200, tipo:"", caracteristicas: "Frambuesa y pimienta rosa", descuento: false, stock: 5 },
     { marca:"todoDia", producto:"perfume", precio: 2200, tipo:"", caracteristicas: "Cereza y avellana", descuento: false, stock: 2 },
@@ -24,20 +24,29 @@ let productoPerfumeria = [
      
 ];
 
+// Desestructuracion arrays
+const [,marca1, marca12] = productoPerfumeria;
+console.log (marca1);
+console.log (marca12);
+
+// spread
+console.log (...productoPerfumeria);
+
 // aumenta en 5 el catalogo de los productos con menor o igual que 3
 
 productoPerfumeria.forEach(object =>{
-    if(object.stock <= 3){
-        object.stock = object.stock + 5;
-        console.log(object.stock);
-    }
+    // Operador and; sugar sintax
+    object.stock <= 3 , object.stock = object.stock + 5 && console.log(object.stock);
+        
+    
 });
 // Problema a resolver, quiero seleccionar el precio de los productos que tengan como descuento = true, pero me esta descontando todos los productos
+/*
 productoPerfumeria.forEach(object =>{
-    if(object.descuento = true && object.precio != 0){
-        let desc = object.precio - (object.precio * 10 /100);
-        console.log(desc);
-    }
+     // Operador and; sugar sintax
+
+     object.descuento = true && object.precio != 0 ; let desc = object.precio - (object.precio * 10 /100); console.log(desc);
+    
 });
 
 // Funcion para añadir nombres de personas a la lista de clientes exclusivos
@@ -68,7 +77,7 @@ console.log (productoPerfumeria);
 for (let index = 0; index < productoPerfumeria.length; index++) {
     console.log(productoPerfumeria[index]);
 }
-
+*/
 // Array de objetos de gastos mensuales
 // 1) Se guardo dentro de una class los distintos tipos de gastos. 2) Se creo una funcion para descontar solo al producto compraInsumos 3) Se aplico una estructura for of para que recorrar todo el arreglo y aplique el descuento solo al objeto compraInsumos.
  
@@ -94,7 +103,10 @@ for (const gastosMes of gastos)
     gastosMes.descuento();
 
 console.log (gastos);
-*/
+
+// desestructuracion
+const {alquiler} = gastosMes;
+console.log (alquiler);
 
 // Productos destacados. Aqui aplico DOM para insertar ciertos productos en el HTML
 
@@ -114,7 +126,11 @@ class Produc {
         this.imagen  = imagen;
        
 }
+
 }
+// Desestructuracion
+const {nombre} = Produc;
+console.log (nombre);
 
 const perfHom = new Produc("Humor", 2916, "Paz e Humor", 64750,"Aromático moderado. Una fragancia innovadora, con la fuerza de las notas hervales", 
     "https://staticar.natura.com/cdn/ff/hChbWa82G-S2F2NaAvExrMIEq1hpgMYkZJsOgn7X5JE/1641343847/public/2022-01/64750_beneficiosfragancia_2.jpg");
@@ -219,6 +235,7 @@ function carritoDeCompras() {
         //Para que se pueda seleccionar varias unidades de un mismo producto
         const numeroUnidadesItem = carrito.reduce((total, itemId) => {
             // Si el producto tiene el mismo codigo Incremento el contador en caso contrario no
+            // Operador ternario
             return itemId === item ? total += 1 : total;
         }, 0);
 
@@ -287,13 +304,13 @@ function guardarCarritoEnLocalStorage () {
 
 // Funcion 7:  Recupera la informacion del carrito usando localStorage (para casos como recarga de la pagina)
 function cargarCarritoDeLocalStorage () {
-    // Con el if buscamos si existe un carrito guardado en el localstorage
-    if (miLocalStorage.getItem('carrito') !== null) {
+    // Sugar syntax: operador and
+    miLocalStorage.getItem('carrito') !== null; carrito = JSON.parse(miLocalStorage.getItem('carrito'));
         // En caso de existir, se lo recarga en la pagina, de manera que no se pierda la informacion ante por ejemplo una caida de conexion
         // Aplico de vuelta JSON, pero en este caso, uso JSON parse
-        carrito = JSON.parse(miLocalStorage.getItem('carrito'));
+        
     }
-}
+
 
 // Quinta parte: Llamar a los Eventos
 botonVaciarHTML.addEventListener('click', vaciarCarrito);
@@ -301,11 +318,41 @@ cargarCarritoDeLocalStorage();
 carritoDeCompras();
 
 
- 
- 
- 
+function Producto(nombre, precio, stock, disponible) {
+  this.nombre = nombre;
+  this.precio = precio;
+  this.stock = stock;
+  this.disponible = disponible;
+  //Vender
+  this.vender = (cantidad) => {
+    this.stock = this.stock - cantidad;
+    // Operador ternario
+    this.stock <= 0 ?  "No hay stock suficiente": this.precio * cantidad;
+
+  };
 
 
+  //Calcular Stock
+  this.calcularStock = function () {
+    //Operador ternario
+    this.stock <= 0 ? (this.disponible = false) (this.stock = 0):  this.stock;
+  };
+} 
+// Desestructuracion
+const desestructurar = (item) => {}
+const {stock} = item;
+console.log (stock);
+
+// Validacion email
+const botonValidar = document.querySelector('#submit');
+botonValidar.addEventListener('click', validarFormulario);
 
 
+function validarFormulario(evento) {
+    evento.preventDefault();
+    let correo = document.getElementById('correo').value;
+    let contraseña = document.getElementById('contraseña').value;
+    // Operador ternario
+    (correo.length == "" || contraseña.length == "")?  alert('Usuario o contraseña invalido') : alert ("Bienvenido");
+}
 
