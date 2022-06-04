@@ -5,7 +5,7 @@
 
 // inicio catalogo
 // PENDIENTE. Debo declararlos con una clase ocnstructora 
-
+/*
 let productoPerfumeria = [
     { marca:"todoDia", producto:"perfume", precio: 2200, tipo:"", caracteristicas: "Frambuesa y pimienta rosa", descuento: false, stock: 5 },
     { marca:"todoDia", producto:"perfume", precio: 2200, tipo:"", caracteristicas: "Cereza y avellana", descuento: false, stock: 2 },
@@ -338,11 +338,12 @@ function Producto(nombre, precio, stock, disponible) {
     this.stock <= 0 ? (this.disponible = false) (this.stock = 0):  this.stock;
   };
 } 
+/*
 // Desestructuracion
 const desestructurar = (item) => {}
 const {stock} = item;
 console.log (stock);
-
+*/
 // Validacion email
 const botonValidar = document.querySelector('#submit');
 botonValidar.addEventListener('click', validarFormulario);
@@ -353,6 +354,6 @@ function validarFormulario(evento) {
     let correo = document.getElementById('correo').value;
     let contraseña = document.getElementById('contraseña').value;
     // Operador ternario
-    (correo.length == "" || contraseña.length == "")?  alert('Usuario o contraseña invalido') : alert ("Bienvenido");
+    (correo.length == "" || contraseña.length == "") ? alert('Usuario o contraseña invalido'): alert ("Bienvenido");
 }
 
