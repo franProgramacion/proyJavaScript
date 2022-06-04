@@ -354,6 +354,17 @@ function validarFormulario(evento) {
     let correo = document.getElementById('correo').value;
     let contraseña = document.getElementById('contraseña').value;
     // Operador ternario
-    (correo.length == "" || contraseña.length == "") ? alert('Usuario o contraseña invalido'): alert ("Bienvenido");
+    (correo.length == "" || contraseña.length == "")? alert('Usuario o contraseña invalido'): alert ("Bienvenido");
 }
 
+// Boton comprar
+const comprar = document.querySelector("#comprar")
+comprar.addEventListener("click", ()=>{
+
+    Swal.fire(
+        'Su compra se ha realizado de manera exitosa!',
+        'Esperamos volver a verlo pronto :)',
+        'success'
+    )
+    
+})
