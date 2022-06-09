@@ -1,0 +1,18 @@
+
+[
+    {"nombre": "todoDia", "precio": 2200, "tipo":"Frambuesa y pimienta rosa", "id": 1},
+    {"nombre": "tododia", "precio": 2200,"tipo":"Cereza y Avellana", "id": 2},
+    {"nombre": "Aquas", "precio": 2000,"tipo":"Campo de violetas", "id": 3},
+    {"nombre": "Ekos", "precio": 3500,"tipo":"Flor Do Luar", "id": 4},
+    {"nombre": "Humor", "precio": 3600,"tipo":"Da Minha Vida", "id": 5},
+    {"nombre": "Humor", "precio": 3600,"tipo":"Propio", "id": 6},
+    {"nombre": "Kaiak", "precio": 3500,"tipo":"Aero", "id": 7},
+    {"nombre": "Kaiak", "precio": 3500,"tipo":"Aventura", "id": 8},
+    {"nombre": "Kriska", "precio": 2700,"tipo":"Drama", "id": 9},
+    {"nombre": "Kriska", "precio": 3500,"tipo":"Shock", "id": 10},
+    {"nombre": "Luna", "precio": 2000,"tipo":"Rose", "id": 11},
+    {"nombre": "Luna", "precio": 2500,"tipo":"Floral", "id": 12},
+    {"nombre": "Biografia", "precio": 2700,"tipo":"Desperte", "id": 6},
+    {"nombre": "Biografia", "precio": 2200,"tipo":"Inspire", "id": 6}
+  
+]
