@@ -24,29 +24,21 @@ let productoPerfumeria = [
      
 ];
 
-// Desestructuracion arrays
-const [,marca1, marca12] = productoPerfumeria;
-console.log (marca1);
-console.log (marca12);
-
-// spread
-console.log (...productoPerfumeria);
-
 // aumenta en 5 el catalogo de los productos con menor o igual que 3
 
 productoPerfumeria.forEach(object =>{
-    // Operador and; sugar sintax
-    object.stock <= 3 , object.stock = object.stock + 5 && console.log(object.stock);
-        
-    
+    if(object.stock <= 3){
+        object.stock = object.stock + 5;
+        console.log(object.stock);
+    }
 });
 // Problema a resolver, quiero seleccionar el precio de los productos que tengan como descuento = true, pero me esta descontando todos los productos
 /*
 productoPerfumeria.forEach(object =>{
-     // Operador and; sugar sintax
-
-     object.descuento = true && object.precio != 0 ; let desc = object.precio - (object.precio * 10 /100); console.log(desc);
-    
+     if(object.descuento = true && object.precio != 0){
+        let desc = object.precio - (object.precio * 10 /100);
+        console.log(desc);
+    }
 });
 
 // Funcion para añadir nombres de personas a la lista de clientes exclusivos
@@ -57,7 +49,7 @@ cliExc.push('Andrea, Hernan, Daniela');
 console.log (cliExc);
 
 
-// Hacer funciones para restar catalogo ante una compra. Usando funcion splice
+// Hacer funciones para restar catalogo ante una compra. Usando 
 console.log (productoPerfumeria);
 const proVend = productoPerfumeria.slice(2, 6);
 console.log (proVend);
@@ -104,10 +96,6 @@ for (const gastosMes of gastos)
 
 console.log (gastos);
 
-// desestructuracion
-const {alquiler} = gastosMes;
-console.log (alquiler);
-
 // Productos destacados. Aqui aplico DOM para insertar ciertos productos en el HTML
 
 // Antes de mostrar los productos destacados insertar mensaje indicando ofertas por el dia del padre
@@ -128,12 +116,7 @@ class Produc {
 }
 
 }
-// Desestructuracion
-const {nombre} = Produc;
-console.log (nombre);
-
-const perfHom = new Produc("Humor", 2916, "Paz e Humor", 64750,"Aromático moderado. Una fragancia innovadora, con la fuerza de las notas hervales", 
-    "https://staticar.natura.com/cdn/ff/hChbWa82G-S2F2NaAvExrMIEq1hpgMYkZJsOgn7X5JE/1641343847/public/2022-01/64750_beneficiosfragancia_2.jpg");
+const perfHom = new Produc("Humor", 2916, "Paz e Humor", 64750,"Aromático moderado. Una fragancia innovadora, con la fuerza de las notas hervales", "https://staticar.natura.com/cdn/ff/hChbWa82G-S2F2NaAvExrMIEq1hpgMYkZJsOgn7X5JE/1641343847/public/2022-01/64750_beneficiosfragancia_2.jpg");
 
 const perfHom2 = new Produc("Kaiak", 4900, "Urbe", 34075,"Para quienes aprecian el aire libre y la naturaleza, de espíritu joven y osado.", "https://staticar.natura.com/cdn/ff/pso1TPTxNbrJpd0L3yTcZdDJgZ63vFnQce9uKmELnJs/1652746082/public/styles/medium/public/products/34075_1_18.jpg?itok=Q813EMWW");
 
@@ -304,13 +287,13 @@ function guardarCarritoEnLocalStorage () {
 
 // Funcion 7:  Recupera la informacion del carrito usando localStorage (para casos como recarga de la pagina)
 function cargarCarritoDeLocalStorage () {
-    // Sugar syntax: operador and
-    miLocalStorage.getItem('carrito') !== null; carrito = JSON.parse(miLocalStorage.getItem('carrito'));
+    // Con el if buscamos si existe un carrito guardado en el localstorage
+    if (miLocalStorage.getItem('carrito') !== null) {
         // En caso de existir, se lo recarga en la pagina, de manera que no se pierda la informacion ante por ejemplo una caida de conexion
         // Aplico de vuelta JSON, pero en este caso, uso JSON parse
-        
+        carrito = JSON.parse(miLocalStorage.getItem('carrito'));
     }
-
+}
 
 // Quinta parte: Llamar a los Eventos
 botonVaciarHTML.addEventListener('click', vaciarCarrito);
@@ -368,6 +351,7 @@ comprar.addEventListener("click", ()=>{
     )
     
 })
+
 // FETCH
 
 const lista = document.querySelector('#listado')
@@ -384,7 +368,7 @@ fetch('/data.json')
                 <p>Código: ${producto.id}</p>
                 <hr/>
             `
-   
+
             lista.append(li)
         })
     })
