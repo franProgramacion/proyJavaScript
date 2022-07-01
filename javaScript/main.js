@@ -126,8 +126,22 @@ const desodor = new Produc("Kaiak", 975, "Corporal Urbe", 56740 ,"Desodorante ma
 
 const espuma = new Produc("Natura Homem", 1315, "", 78911 ,"La Espuma de Afeitar Natura Homem proporciona una afeitada más práctica y confortable, calma la piel y la deja suave. Posee una textura más densa para mayor comodidad al afeitarse.", "https://staticar.natura.com/cdn/ff/TEM7Slc6RLJXV4mWwtP3YlI4sMJeowmFoB9GZMfxqPg/1641469071/public/2022-01/78911_beneficios_1.jpg");
 
+const perfMuj = new Produc("Kaiak", 3766, "Vital", 100420 ,"Kaiak Vital de Natura es una fragancia de la familia olfativa Aromática Acuática para Mujeres. Esta fragrancia es nueva.", "https://staticar.natura.com/cdn/ff/Qz70R2qpENID84ov9ntEu2k8H9ZYmCm7gI6ZeMjuZPE/1656128332/public/styles/medium/public/products/100420_1_23.jpg?itok=T7fMMce8");
+
+const perfMuj2 = new Produc("Ekos", 3133, "Flor do Luar", 78863 ,"Flor Do Luar es una fragancia floral moderada, enriquecida con una combinación de aceites esenciales de Copaiba y Priprioca, ingredientes naturales de Amazonia", "https://staticar.natura.com/cdn/ff/3h6sZjwymGFyOuEUBYSmVD7kIz1pIJituh2xX6ar-LE/1656117532/public/styles/medium/public/products/78863_1_15.jpg?itok=ulL5QIqq");
+
+const perfMuj3 = new Produc("Humor", 4905, "Propio", 64749 ,"Dulce moderado. Humor Proprio es la dulce fragancia llena de personalidad del portafolio de la marca. Tiene una lectura innovadora de la cereza, aportando el lado dulce del almíbar a su composición.", "https://staticar.natura.com/cdn/ff/_iOWVBclbSOwfe707CtGudjTgTOJLTLitHVlJqXOrvI/1656123421/public/products/64749_2_2.jpg");
+
+const perfMuj4 = new Produc("Kriska", 2743, "Alegria", 8185 ,"Un contraste único entre el maíz caramelizado fusionado con una deliciosa combinación de crema de vainilla, rodeada por un toque único de cumarú, un ingrediente de la biodiversidad amazónica. Un perfume irresistible", "https://staticar.natura.com/sites/default/files/styles/medium/public/products/185_1_22.jpg?itok=ep3GNvdO");
+
+const perfMuj5 = new Produc("Aquas", 1494, "Dias de Verano", 81568 ,"Una combinación de flores y frutas tropicales colorean los días soleados.Aguas ligeras, refrescantes y cautivadoras, te aportarán una inyección de energía y frescura en tu día a día. Flores, cítricos y frutas tropicales ganan protagonismo y nos trasladan a la naturaleza más mágica.", "https://staticar.natura.com/sites/default/files/styles/medium/public/products/83483_1_2.jpg?itok=WNLhlsWu");
+
+const perfMuj6 = new Produc("Luna", 6815, "Actitude", 107011 ,"intenso, perdurable y muy sensual!!!", "https://staticar.natura.com/cdn/ff/GG4oYSbKmiXh-hEN3j01S7uS7RIlB6-PHfIeJpUbPSQ/1656118753/public/styles/medium/public/products/107011_1_13.jpg?itok=FzM8VQLz");
+
+const perfMuj7 = new Produc("Biografia", 5645, "Assinatura", 74790 ,"Las flores modernas se envuelven con la dulzura de la caña de azúcar y el Cumarú, un ingrediente natural de la biodiversidad brasileña. Biografia Assinatura gana más brillo con un toque de naranja, mandarina y almendras doradas, resaltado por la madera y el musk que aseguran la perfumación perfecta para la vida cotidiana.", "https://staticar.natura.com/cdn/ff/IZ6G0x2a61Y4bIyMBac99mq64q4iFNZyuXrGbMnsjeU/1656114705/public/products/74790_2_6.jpg");
+
 const prodDest = [];
-prodDest.push(perfHom, perfHom2, perfHom3, desodor, espuma);
+prodDest.push(perfHom, perfHom2, perfHom3, desodor, espuma, perfMuj, perfMuj2, perfMuj3, perfMuj4, perfMuj5, perfMuj6, perfMuj7);
 console.log (prodDest);
 
 // Fin primer paso
@@ -338,6 +352,20 @@ function validarFormulario(evento) {
     let contraseña = document.getElementById('contraseña').value;
     // Operador ternario
     (correo.length == "" || contraseña.length == "")? alert('Usuario o contraseña invalido'): alert ("Bienvenido");
+}
+
+// Validacion registro
+const botonValidarRegistro = document.querySelector('#submit2');
+botonValidarRegistro.addEventListener('click', validarFor);
+
+
+function validarFor(evento) {
+    evento.preventDefault();
+    let usu = document.getElementById('usuar').value;
+    let cor = document.getElementById('correoE').value;
+    let con = document.getElementById('cont').value;
+    // Operador ternario
+    (usu.length == "" || cor.lenght == "" || con.length == "")? alert('Los campos estan vacios. Por favor verifique sus datos de entrada'): alert ("Usuario creado exitosamente");
 }
 
 // Boton comprar
